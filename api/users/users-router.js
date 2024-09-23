@@ -36,6 +36,9 @@ router.put('/:id', validateUserId, validateUser, (req, res, next) => {
     .then(() => {
       return User.getById(req.params.id);
     })
+    .then(user => {
+      res.json(user)
+    })
     .catch(next);
 });
 
@@ -63,7 +66,7 @@ router.post(
   validatePost,
   async (req, res, next) => {
     try {
-      const result = Post.insert({
+      const result = await Post.insert({
         user_id: req.params.id,
         text: req.text,
       });
