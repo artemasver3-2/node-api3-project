@@ -36,8 +36,8 @@ router.put('/:id', validateUserId, validateUser, (req, res, next) => {
     .then(() => {
       return User.getById(req.params.id);
     })
-    .then(user => {
-      res.json(user)
+    .then((user) => {
+      res.json(user);
     })
     .catch(next);
 });
